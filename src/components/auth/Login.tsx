@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { login } from '../../services/authService.ts';
 import './Login.css';
 
 const Login: React.FC = () => {
@@ -13,11 +14,15 @@ const Login: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+    try {
+      await login(email, password);
+      alert('Login successful');
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Login failed. Please try again.');
+    }
   };
 
   return (
