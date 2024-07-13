@@ -1,19 +1,19 @@
-const API_URL = 'http://localhost:8080/api/v1/';
-
-export const signup = async (email: string, password: string) => {
-  const response = await fetch(`${API_URL}/signup`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email, password }),
-  });
-
-  if (!response.ok) {
-    throw new Error('Signup failed');
-  }
-
-  return response.json();
+import { SignupRequestDto } from '../services/dto/SignupRequestDto';
+import { API_URL } from '../utils/constant.ts';
+export const signup = async (signupData: SignupRequestDto) => {
+    const response = await fetch(`${API_URL}/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(signupData),
+    });
+  
+    if (!response.ok) {
+      throw new Error('Signup failed');
+    }
+  
+    return response.json();
 };
 
 export const login = async (email: string, password: string) => {
