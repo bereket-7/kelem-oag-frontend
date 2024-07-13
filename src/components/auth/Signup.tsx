@@ -1,4 +1,3 @@
-// src/components/auth/Signup.tsx
 
 import React, { useState } from 'react';
 import { signup } from '../../services/authService';
